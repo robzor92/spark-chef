@@ -142,6 +142,12 @@ template"#{node['hadoop_spark']['home']}/conf/spark-env.sh" do
            })
 end
 
+template"#{node['hadoop_spark']['home']}/bin/getGpusResources.sh" do
+  source "getGpusResources.sh.erb"
+  owner node['hadoop_spark']['user']
+  group node['hadoop_spark']['group']
+  mode 0555
+end
 
 eventlog_dir = "#{node['hops']['hdfs']['user_home']}/#{node['hadoop_spark']['user']}/applicationHistory"
 
